@@ -225,6 +225,7 @@
     .sec-yellow { background: var(--yellow-soft); border-color: #fde68a; }
     .sec-green { background: var(--green-soft); border-color: #bbf7d0; }
     .sec-red { background: var(--red-soft); border-color: #fecaca; }
+    .sec-purple { background: var(--purple-soft); border-color: #ddd6fe; }
 
     .card-list {
       display: grid;
@@ -254,6 +255,7 @@
     .badge-yellow { background: #fef3c7; color: #92400e; }
     .badge-red { background: #fee2e2; color: #991b1b; }
     .badge-purple { background: #ede9fe; color: #5b21b6; }
+    .badge-orange { background: #fed7aa; color: #9a3412; }
 
     .info-card h3 {
       margin: 0 0 8px;
@@ -282,6 +284,76 @@
       line-height: 1.65;
       font-weight: 700;
       color: #334155;
+    }
+
+    /* ===== 운동장 배치도 섹션 ===== */
+    .map-card {
+      background: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 20px;
+      padding: 14px 10px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+      margin-bottom: 14px;
+    }
+
+    .map-card svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .map-hint {
+      margin: 8px 4px 0;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #64748b;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .grade-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .grade-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .grade-tent {
+      width: 30px;
+      height: 24px;
+      border-radius: 5px;
+      flex-shrink: 0;
+      border: 2px solid;
+    }
+
+    .grade-1 .grade-tent { background: #dbeafe; border-color: #1d4ed8; }
+    .grade-2 .grade-tent { background: #dcfce7; border-color: #15803d; }
+    .grade-3 .grade-tent { background: #fed7aa; border-color: #c2410c; }
+
+    .grade-card strong {
+      font-size: 17px;
+      font-weight: 950;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+      min-width: 52px;
+    }
+
+    .grade-card .where {
+      font-size: 15px;
+      color: #475569;
+      font-weight: 750;
+      line-height: 1.45;
     }
 
     .time-list {
@@ -353,6 +425,9 @@
       section h2 { font-size: 24px; }
       .info-card h3 { font-size: 20px; }
       .info-card p, .info-card li { font-size: 16.5px; }
+      .grade-card { padding: 13px 14px; }
+      .grade-card strong { font-size: 16px; min-width: 48px; }
+      .grade-card .where { font-size: 14px; }
     }
   </style>
 </head>
@@ -362,7 +437,7 @@
       <div class="hero-card">
         <div class="eyebrow">전체 교사용 안내</div>
         <h1>2026 대구일중<br />민속경기 한마당</h1>
-        <p class="subtitle">학년별 이동, 전체 일정, 담임 협조, 안전지도, 생활지도를 한 화면에서 확인합니다.</p>
+        <p class="subtitle">운동장 배치도, 학년별 이동, 전체 일정, 담임 협조, 안전지도, 생활지도를 한 화면에서 확인합니다.</p>
 
         <div class="summary-grid">
           <div class="summary-card">
@@ -392,6 +467,7 @@
 
       <div class="menu-title">궁금한 항목을 누르면 바로 이동합니다</div>
       <nav class="nav-grid" aria-label="빠른 이동 메뉴">
+        <a class="nav-btn" href="#layout"><b>운동장 배치도</b><small>학급 텐트와 시설 위치</small></a>
         <a class="nav-btn" href="#movement"><b>학년별 이동 안내</b><small>08:25부터 학년별 순차 이동</small></a>
         <a class="nav-btn" href="#timetable"><b>전체 타임테이블</b><small>개회식부터 학교 가꾸기까지</small></a>
         <a class="nav-btn" href="#homeroom"><b>담임교사 협조</b><small>자리 지키기, 소집, 이석 지도</small></a>
@@ -399,6 +475,107 @@
         <a class="nav-btn" href="#life"><b>생활지도</b><small>학교폭력 예방, 갈등 발생 시 조치</small></a>
       </nav>
     </main>
+
+    <section id="layout" class="sec-purple">
+      <h2>운동장 배치도</h2>
+      <p class="section-desc">운동장 도착 후 학급 텐트 위치와 주요 시설을 확인하세요.</p>
+
+      <div class="map-card">
+        <svg width="100%" viewBox="0 0 720 580" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="학년별 텐트 배치도">
+          <title>학년별 텐트 배치도</title>
+          <desc>운동장 학급 텐트 배치도. 상단 2학년(오른쪽 1반 → 왼쪽 11반), 좌측 3학년 1~11반, 우측 1학년 1~11반, 중앙 운동장, 운동장 아래 본부석·내빈석·의무실·방송, 우측 매화관, 하단 본관.</desc>
+          <style>
+            .lbl{font-family:Pretendard,system-ui,sans-serif;font-size:14px;font-weight:600}
+            .area{font-family:Pretendard,system-ui,sans-serif;font-size:22px;font-weight:800;fill:#334155}
+            .fac{font-family:Pretendard,system-ui,sans-serif;font-size:14px;font-weight:700;fill:#334155}
+            .subt{font-family:Pretendard,system-ui,sans-serif;font-size:14px;font-weight:600;fill:#64748b}
+            .t1{fill:#dbeafe;stroke:#1d4ed8}.t1t{fill:#1e40af}
+            .t2{fill:#dcfce7;stroke:#15803d}.t2t{fill:#166534}
+            .t3{fill:#fed7aa;stroke:#c2410c}.t3t{fill:#9a3412}
+            .fbx{fill:#f1f5f9;stroke:#94a3b8}
+          </style>
+          <rect x="20" y="20" width="575" height="480" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/>
+          <rect x="610" y="20" width="90" height="480" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.5"/>
+          <text class="area" x="655" y="180" text-anchor="middle">매</text>
+          <text class="area" x="655" y="230" text-anchor="middle">화</text>
+          <text class="area" x="655" y="280" text-anchor="middle">관</text>
+          <text class="subt" x="655" y="340" text-anchor="middle">(강당)</text>
+          <rect x="20" y="515" width="575" height="34" rx="6" fill="#e5e7eb" stroke="#94a3b8" stroke-width="0.5"/>
+          <text class="area" x="307" y="532" text-anchor="middle" dominant-baseline="central" style="font-size:20px">본관</text>
+
+          <ellipse cx="308" cy="250" rx="140" ry="160" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.5" stroke-dasharray="4 4"/>
+          <text class="area" x="308" y="250" text-anchor="middle" dominant-baseline="central" style="fill:#475569">운동장</text>
+
+          <rect class="fbx" x="115" y="438" width="85" height="30" rx="5" stroke-width="0.5"/><text class="fac" x="157" y="453" text-anchor="middle" dominant-baseline="central">본부석</text>
+          <rect class="fbx" x="215" y="438" width="85" height="30" rx="5" stroke-width="0.5"/><text class="fac" x="257" y="453" text-anchor="middle" dominant-baseline="central">내빈석</text>
+          <rect class="fbx" x="315" y="438" width="85" height="30" rx="5" stroke-width="0.5"/><text class="fac" x="357" y="453" text-anchor="middle" dominant-baseline="central">의무실</text>
+          <rect class="fbx" x="415" y="438" width="85" height="30" rx="5" stroke-width="0.5"/><text class="fac" x="457" y="453" text-anchor="middle" dominant-baseline="central">방송</text>
+
+          <rect class="t2" x="70" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="91" y="45" text-anchor="middle" dominant-baseline="central">2-11</text>
+          <rect class="t2" x="114" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="135" y="45" text-anchor="middle" dominant-baseline="central">2-10</text>
+          <rect class="t2" x="158" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="179" y="45" text-anchor="middle" dominant-baseline="central">2-9</text>
+          <rect class="t2" x="202" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="223" y="45" text-anchor="middle" dominant-baseline="central">2-8</text>
+          <rect class="t2" x="246" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="267" y="45" text-anchor="middle" dominant-baseline="central">2-7</text>
+          <rect class="t2" x="290" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="311" y="45" text-anchor="middle" dominant-baseline="central">2-6</text>
+          <rect class="t2" x="334" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="355" y="45" text-anchor="middle" dominant-baseline="central">2-5</text>
+          <rect class="t2" x="378" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="399" y="45" text-anchor="middle" dominant-baseline="central">2-4</text>
+          <rect class="t2" x="422" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="443" y="45" text-anchor="middle" dominant-baseline="central">2-3</text>
+          <rect class="t2" x="466" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="487" y="45" text-anchor="middle" dominant-baseline="central">2-2</text>
+          <rect class="t2" x="510" y="32" width="42" height="26" rx="4" stroke-width="0.5"/><text class="lbl t2t" x="531" y="45" text-anchor="middle" dominant-baseline="central">2-1</text>
+
+          <rect class="t3" x="28" y="72" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="87" text-anchor="middle" dominant-baseline="central">3-1</text>
+          <rect class="t3" x="28" y="110" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="125" text-anchor="middle" dominant-baseline="central">3-2</text>
+          <rect class="t3" x="28" y="148" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="163" text-anchor="middle" dominant-baseline="central">3-3</text>
+          <rect class="t3" x="28" y="186" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="201" text-anchor="middle" dominant-baseline="central">3-4</text>
+          <rect class="t3" x="28" y="224" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="239" text-anchor="middle" dominant-baseline="central">3-5</text>
+          <rect class="t3" x="28" y="262" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="277" text-anchor="middle" dominant-baseline="central">3-6</text>
+          <rect class="t3" x="28" y="300" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="315" text-anchor="middle" dominant-baseline="central">3-7</text>
+          <rect class="t3" x="28" y="338" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="353" text-anchor="middle" dominant-baseline="central">3-8</text>
+          <rect class="t3" x="28" y="376" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="391" text-anchor="middle" dominant-baseline="central">3-9</text>
+          <rect class="t3" x="28" y="414" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="429" text-anchor="middle" dominant-baseline="central">3-10</text>
+          <rect class="t3" x="28" y="452" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t3t" x="46" y="467" text-anchor="middle" dominant-baseline="central">3-11</text>
+
+          <rect class="t1" x="556" y="72" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="87" text-anchor="middle" dominant-baseline="central">1-1</text>
+          <rect class="t1" x="556" y="110" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="125" text-anchor="middle" dominant-baseline="central">1-2</text>
+          <rect class="t1" x="556" y="148" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="163" text-anchor="middle" dominant-baseline="central">1-3</text>
+          <rect class="t1" x="556" y="186" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="201" text-anchor="middle" dominant-baseline="central">1-4</text>
+          <rect class="t1" x="556" y="224" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="239" text-anchor="middle" dominant-baseline="central">1-5</text>
+          <rect class="t1" x="556" y="262" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="277" text-anchor="middle" dominant-baseline="central">1-6</text>
+          <rect class="t1" x="556" y="300" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="315" text-anchor="middle" dominant-baseline="central">1-7</text>
+          <rect class="t1" x="556" y="338" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="353" text-anchor="middle" dominant-baseline="central">1-8</text>
+          <rect class="t1" x="556" y="376" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="391" text-anchor="middle" dominant-baseline="central">1-9</text>
+          <rect class="t1" x="556" y="414" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="429" text-anchor="middle" dominant-baseline="central">1-10</text>
+          <rect class="t1" x="556" y="452" width="36" height="30" rx="4" stroke-width="0.5"/><text class="lbl t1t" x="574" y="467" text-anchor="middle" dominant-baseline="central">1-11</text>
+        </svg>
+        <p class="map-hint">손가락으로 확대하면 반 번호를 자세히 볼 수 있습니다.</p>
+      </div>
+
+      <div class="grade-grid">
+        <div class="grade-card grade-1">
+          <span class="grade-tent" aria-hidden="true"></span>
+          <strong>1학년</strong>
+          <span class="where">운동장 오른쪽 (매화관 방향) · 1반이 본관 반대편 상단</span>
+        </div>
+        <div class="grade-card grade-2">
+          <span class="grade-tent" aria-hidden="true"></span>
+          <strong>2학년</strong>
+          <span class="where">운동장 위쪽 가로 배치 · 1반이 오른쪽 끝, 11반이 왼쪽 끝</span>
+        </div>
+        <div class="grade-card grade-3">
+          <span class="grade-tent" aria-hidden="true"></span>
+          <strong>3학년</strong>
+          <span class="where">운동장 왼쪽 · 1반이 본관 반대편 상단</span>
+        </div>
+      </div>
+
+      <article class="info-card">
+        <span class="badge badge-orange">시설 위치</span>
+        <h3>본부석 · 내빈석 · 의무실 · 방송</h3>
+        <p>운동장 아래쪽(본관 방향) 가운데에 일렬로 배치됩니다. 부상이나 응급 상황 발생 시 의무실로 안내해 주십시오.</p>
+      </article>
+
+      <a class="top-link" href="#top">↑ 첫 화면으로</a>
+    </section>
 
     <section id="movement" class="sec-blue">
       <h2>학년별 운동장 이동 안내</h2>
