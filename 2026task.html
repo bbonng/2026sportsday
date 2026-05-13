@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0A1628">
+<title>2026 대구일중 민속경기 도우미 안내</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  :root{
+    --navy:#0A1628;--navy-dark:#050B14;--navy-soft:#1E2A42;
+    --sky:#00AEEF;--sky-soft:#E0F4FB;
+    --gold:#D4A017;--gold-soft:#FFF7DB;
+    --bg:#F2F4F7;--card:#FFFFFF;
+    --text:#1A1F2E;--text-sub:#5A6173;--text-mute:#9095A2;
+    --border:#E5E7EB;--border-soft:#F0F1F4;
+    --tag-bg:#F5F6F9;--alert:#C73E2F;
+  }
+  html,body{
+    font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;
+    background:var(--bg);color:var(--text);
+    font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+  }
+  .container{max-width:720px;margin:0 auto;background:var(--bg);min-height:100vh;padding-bottom:80px}
+
+  /* ── Header ── */
+  header{
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-dark) 100%);
+    color:white;padding:22px 20px 18px;position:relative;overflow:hidden;
+  }
+  header::before{
+    content:'';position:absolute;top:-50px;right:-30px;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(0,174,239,0.16) 0%,transparent 70%);border-radius:50%;
+  }
+  header::after{
+    content:'';position:absolute;bottom:-80px;left:-40px;width:180px;height:180px;
+    background:radial-gradient(circle,rgba(212,160,23,0.10) 0%,transparent 70%);border-radius:50%;
+  }
+  .h-year{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:1.5px;position:relative;z-index:1}
+  .h-title{font-size:21px;font-weight:700;margin-top:3px;line-height:1.3;position:relative;z-index:1}
+  .h-sub{font-size:13px;color:rgba(255,255,255,0.65);margin-top:4px;position:relative;z-index:1}
+
+  /* ── Tabs ── */
+  .tabs{
+    background:white;display:flex;border-bottom:1px solid var(--border);
+    position:sticky;top:0;z-index:20;
+  }
+  .tab{
+    flex:1;background:none;border:none;padding:15px 8px;
+    font-size:14px;font-weight:600;color:var(--text-mute);
+    cursor:pointer;position:relative;transition:color 0.15s;
+    font-family:inherit;
+  }
+  .tab.active{color:var(--navy)}
+  .tab.active::after{
+    content:'';position:absolute;bottom:-1px;left:50%;
+    transform:translateX(-50%);width:46%;height:3px;
+    background:var(--navy);border-radius:2px 2px 0 0;
+  }
+
+  /* ── View ── */
+  .view{display:none;padding:14px}
+  .view.active{display:block}
+
+  /* ── Intro card ── */
+  .intro{
+    background:white;border-radius:12px;padding:14px 16px;
+    margin-bottom:14px;border:1px solid var(--border-soft);
+    font-size:13px;color:var(--text-sub);line-height:1.6;
+  }
+  .intro strong{color:var(--navy);font-weight:600}
+  .intro .pill{
+    display:inline-block;background:var(--gold-soft);color:#8A6608;
+    font-size:11px;font-weight:700;padding:2px 7px;border-radius:4px;
+    margin-right:4px;
+  }
+
+  /* ── Event card ── */
+  .event-card{
+    background:var(--card);border-radius:14px;margin-bottom:14px;
+    overflow:hidden;border:1px solid var(--border-soft);
+    box-shadow:0 1px 2px rgba(10,22,40,0.03);
+  }
+  .event-head{
+    background:var(--navy);color:white;padding:14px 16px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .event-num{
+    background:var(--gold);color:var(--navy);width:28px;height:28px;
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;flex-shrink:0;
+  }
+  .event-name{font-size:17px;font-weight:700}
+  .event-body{padding:14px 16px 16px}
+
+  /* ── Section block ── */
+  .block{margin-bottom:14px}
+  .block:last-child{margin-bottom:0}
+  .block-label{
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;
+    margin-bottom:10px;letter-spacing:0.5px;
+  }
+  .block-label.teacher{color:var(--navy)}
+  .block-label.student{color:#8A6608}
+  .block-label .bar{
+    width:3px;height:13px;border-radius:2px;
+  }
+  .block-label.teacher .bar{background:var(--navy)}
+  .block-label.student .bar{background:var(--gold)}
+
+  /* ── Task rows ── */
+  .row{
+    display:flex;gap:10px;padding:9px 12px;
+    background:var(--tag-bg);border-radius:8px;font-size:14px;
+    margin-bottom:6px;align-items:flex-start;
+  }
+  .row:last-child{margin-bottom:0}
+  .row-label{
+    font-weight:700;color:var(--navy);
+    min-width:74px;flex-shrink:0;font-size:13px;
+  }
+  .row-content{color:var(--text);flex:1;line-height:1.5}
+  .row-note{
+    display:inline-block;font-size:11px;
+    background:var(--sky);color:white;
+    padding:1px 6px;border-radius:4px;
+    margin-left:4px;vertical-align:1px;font-weight:600;
+  }
+  .row-warn{
+    display:inline-block;font-size:11px;
+    background:var(--alert);color:white;
+    padding:1px 6px;border-radius:4px;
+    margin-left:4px;vertical-align:1px;font-weight:600;
+  }
+
+  /* ── Phase grouping (for student tasks) ── */
+  .phase{margin-bottom:11px}
+  .phase:last-child{margin-bottom:0}
+  .phase-title{
+    display:inline-block;font-size:12px;font-weight:700;
+    color:#8A6608;background:var(--gold-soft);
+    padding:3px 9px;border-radius:5px;margin-bottom:7px;
+  }
+  .phase-note{
+    font-size:12px;color:var(--alert);margin-top:5px;
+    padding:0 4px;font-weight:500;
+  }
+
+  /* ── Class grid (for 8자/2인3각) ── */
+  .class-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(98px,1fr));
+    gap:6px;margin-bottom:6px;
+  }
+  .class-cell{
+    background:var(--tag-bg);padding:7px 9px;border-radius:6px;
+    font-size:13px;display:flex;flex-direction:column;gap:1px;
+  }
+  .class-cell .num{font-size:11px;color:var(--text-mute);font-weight:600}
+  .class-cell.is-teacher{background:var(--sky-soft)}
+  .class-cell.is-teacher .num{color:var(--navy)}
+  .class-cell .name{font-weight:600}
+  .class-cell.is-teacher .name{color:var(--navy)}
+
+  /* ── Teacher chips ── */
+  .chip-bar{
+    display:flex;overflow-x:auto;gap:7px;
+    padding:0 0 10px 0;margin-bottom:14px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .chip-bar::-webkit-scrollbar{height:3px}
+  .chip-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+  .chip{
+    flex-shrink:0;padding:10px 16px;background:white;
+    border:1px solid var(--border);border-radius:999px;
+    font-size:15px;font-weight:600;color:var(--text);
+    cursor:pointer;transition:all 0.15s;font-family:inherit;
+  }
+  .chip.active{
+    background:var(--navy);color:white;border-color:var(--navy);
+  }
+
+  /* ── Teacher detail ── */
+  .t-summary{
+    background:white;border-radius:12px;padding:14px 16px;
+    margin-bottom:12px;border:1px solid var(--border-soft);
+    display:flex;align-items:center;gap:14px;
+  }
+  .t-avatar{
+    width:48px;height:48px;border-radius:50%;
+    background:var(--navy);color:white;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:700;flex-shrink:0;
+    letter-spacing:-1px;
+  }
+  .t-info-name{font-size:17px;font-weight:700;color:var(--navy)}
+  .t-info-tag{font-size:13px;color:var(--text-sub);margin-top:1px}
+
+  .t-event{
+    background:white;border-radius:12px;
+    border:1px solid var(--border-soft);padding:12px 14px;
+    margin-bottom:10px;box-shadow:0 1px 2px rgba(10,22,40,0.03);
+  }
+  .t-event-head{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+  .t-event-num{
+    width:22px;height:22px;background:var(--navy);color:white;
+    border-radius:6px;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:11px;flex-shrink:0;
+  }
+  .t-event-name{font-size:15px;font-weight:700;color:var(--navy)}
+  .t-event-empty .t-event-num{background:var(--text-mute)}
+  .t-event-empty .t-event-name{color:var(--text-mute)}
+
+  .t-row{
+    display:flex;gap:10px;padding:6px 0;
+    font-size:13.5px;align-items:flex-start;
+    border-top:1px dashed var(--border-soft);
+  }
+  .t-row:first-of-type{border-top:none}
+  .t-row-k{
+    font-weight:700;color:var(--text-sub);
+    min-width:72px;flex-shrink:0;font-size:12px;
+    padding-top:1px;
+  }
+  .t-row-v{color:var(--text);flex:1;line-height:1.5}
+  .t-row-v.empty{color:var(--text-mute);font-style:italic}
+
+  .my-students{
+    background:var(--gold-soft);border-radius:7px;
+    padding:8px 11px;margin-top:8px;
+    font-size:13px;color:#6F5008;line-height:1.55;
+  }
+  .my-students strong{color:#5D4307;font-weight:700;margin-right:4px}
+
+  /* ── Helper roster ── */
+  .roster-group{margin-bottom:14px}
+  .roster-grade{
+    font-size:13px;font-weight:700;color:var(--navy);
+    margin-bottom:7px;display:flex;align-items:center;gap:8px;
+  }
+  .roster-grade .count{
+    font-size:11px;color:var(--text-mute);font-weight:600;
+    background:var(--tag-bg);padding:2px 7px;border-radius:4px;
+  }
+  .roster-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:6px;
+  }
+  .roster-cell{
+    background:white;border:1px solid var(--border-soft);
+    border-radius:8px;padding:9px 12px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  }
+  .roster-cell .rname{font-weight:600;font-size:14px}
+  .roster-cell .rclass{font-size:11px;color:var(--text-mute);font-weight:600}
+
+  /* ── Footer ── */
+  footer{
+    margin:18px 14px 0;padding:12px 14px;
+    background:var(--navy-soft);color:rgba(255,255,255,0.85);
+    border-radius:10px;font-size:12px;line-height:1.6;text-align:center;
+    cursor:pointer;user-select:none;
+  }
+  footer strong{color:var(--gold)}
+
+  /* ── 학생별 임무 (새 명단) ── */
+  .common-card{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-soft) 100%);
+    color:white;border-radius:12px;padding:14px 16px;margin-bottom:14px;
+  }
+  .common-card-title{
+    font-size:13px;font-weight:700;color:var(--gold);
+    margin-bottom:10px;letter-spacing:0.3px;
+  }
+  .common-row{
+    display:flex;gap:10px;padding:7px 0;
+    border-top:1px solid rgba(255,255,255,0.1);
+    font-size:13px;align-items:flex-start;
+  }
+  .common-row:first-of-type{border-top:none}
+  .common-row-k{
+    font-weight:700;color:var(--sky);min-width:48px;
+    flex-shrink:0;font-size:12px;
+  }
+  .common-row-v{flex:1;line-height:1.55;color:rgba(255,255,255,0.92)}
+
+  .grade-hdr{
+    font-size:12px;font-weight:700;color:var(--text-mute);
+    letter-spacing:1px;margin:14px 4px 8px;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;
+  }
+  .grade-hdr::after{
+    content:'';flex:1;height:1px;background:var(--border);
+  }
+  .grade-hdr .gn{
+    color:var(--navy);font-size:13px;
+  }
+
+  .stu-row{
+    background:white;border-radius:10px;padding:11px 14px;
+    border:1px solid var(--border-soft);margin-bottom:7px;
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .stu-id{
+    flex-shrink:0;min-width:96px;display:flex;flex-direction:column;gap:1px;
+  }
+  .stu-name{font-size:15px;font-weight:700;color:var(--navy)}
+  .stu-meta{font-size:11px;color:var(--text-mute);font-weight:600}
+  .stu-duties{
+    flex:1;display:flex;flex-direction:column;gap:5px;
+  }
+  .stu-duty{
+    font-size:13px;line-height:1.45;color:var(--text);
+    display:flex;gap:7px;align-items:flex-start;
+  }
+  .duty-tag{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:20px;height:20px;border-radius:5px;
+    background:var(--navy);color:white;
+    font-size:11px;font-weight:700;flex-shrink:0;
+    margin-top:1px;
+  }
+  .duty-tag.e1{background:#0A4A7A}
+  .duty-tag.e2{background:#1D7A52}
+  .duty-tag.e3{background:#B8860B}
+  .duty-tag.e4{background:#A03826}
+  .duty-tag.e5{background:#5B47A0}
+  .stu-empty{
+    color:var(--text-mute);font-style:italic;font-size:13px;
+    background:var(--tag-bg);padding:6px 10px;border-radius:6px;
+  }
+
+  /* ── 이스터에그 모달 ── */
+  .egg-mask{
+    display:none;position:fixed;inset:0;
+    background:rgba(10,22,40,0.72);
+    z-index:100;align-items:center;justify-content:center;
+    padding:24px;
+    animation:fadeIn 0.2s ease-out;
+  }
+  .egg-mask.show{display:flex}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .egg-card{
+    background:white;padding:28px 24px 22px;border-radius:16px;
+    max-width:320px;width:100%;text-align:center;position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    animation:popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes popIn{
+    from{opacity:0;transform:scale(0.85) translateY(10px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+  }
+  .egg-emoji{font-size:42px;margin-bottom:8px;line-height:1}
+  .egg-title{
+    font-size:17px;font-weight:700;color:var(--navy);
+    margin-bottom:14px;
+  }
+  .egg-body{
+    font-size:14px;color:var(--text-sub);line-height:1.7;
+  }
+  .egg-body strong{color:var(--navy);font-weight:700}
+  .egg-quote{
+    display:inline-block;font-style:italic;
+    color:var(--gold);font-weight:600;
+    padding:3px 0;border-bottom:1px dashed var(--gold);
+  }
+  .egg-close{
+    margin-top:18px;background:var(--navy);color:white;
+    border:none;padding:10px 24px;border-radius:8px;
+    font-size:13px;font-weight:600;cursor:pointer;
+    font-family:inherit;letter-spacing:0.3px;
+  }
+  .egg-close:active{transform:scale(0.97)}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="h-year">2026 SPORTS DAY · DAEGU IL M/S</div>
+    <div class="h-title">대구일중 민속경기 한마당</div>
+    <div class="h-sub">도우미 임무 안내 · 운영진용</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="events">종목별</button>
+    <button class="tab" data-tab="teachers">선생님별</button>
+    <button class="tab" data-tab="roster">도우미 명단</button>
+  </nav>
+
+  <!-- ───────── 종목별 ───────── -->
+  <section id="events" class="view active">
+    <div class="intro">
+      <span class="pill">읽는 법</span>
+      각 경기마다 <strong>선생님 임무</strong>와 <strong>학생 도우미 임무</strong>를 분리해놨습니다.
+      학생이 헷갈리면 해당 경기 → 학생 도우미 칸 보여주면 됩니다.
+    </div>
+    <div id="events-list"></div>
+  </section>
+
+  <!-- ───────── 선생님별 ───────── -->
+  <section id="teachers" class="view">
+    <div class="intro">
+      <span class="pill">사용법</span>
+      본인 이름 누르면 <strong>5개 경기 동안 본인이 해야 할 일</strong>이 다 나옵니다.
+    </div>
+    <div class="chip-bar" id="chip-bar"></div>
+    <div id="teacher-detail"></div>
+  </section>
+
+  <!-- ───────── 도우미 명단 ───────── -->
+  <section id="roster" class="view">
+    <div class="intro">
+      <span class="pill">총 20명</span>
+      학생별로 본인 임무가 <strong>경기 번호와 함께 한 줄씩</strong>. 위쪽엔 학년 공통 임무.
+    </div>
+    <div id="roster-list"></div>
+  </section>
+
+  <footer id="footer-egg">
+    Made for <strong>대구일중 체육선생님</strong> · 2026
+  </footer>
+</div>
+
+<!-- ───────── 이스터에그 모달 ───────── -->
+<div class="egg-mask" id="egg-mask">
+  <div class="egg-card">
+    <div class="egg-emoji">🌱</div>
+    <div class="egg-title">발견하셨네요</div>
+    <div class="egg-body">
+      이 정리본의 제작자는<br>
+      도우미 명단에도, 임무 명단에도<br>
+      <strong>이름이 없습니다.</strong><br><br>
+      <span class="egg-quote">"왕따가 심심해서 만든 정리본"</span><br><br>
+      ㅎㅎ 체육대회 잘 치르세요.
+    </div>
+    <button class="egg-close" onclick="document.getElementById('egg-mask').classList.remove('show')">닫기</button>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// 데이터: 종목별
+// ─────────────────────────────────────────────
+const events = [
+  {
+    num: 1, name: '이어달리기',
+    teacherTasks: [
+      { role: '소집', who: '신미경, 이재목' },
+      { role: '준비', who: '박상민, 하지훈', note: '+영상 도우미' },
+      { role: '결심', who: '김미화, 정황제', note: '+영상 도우미' },
+      { role: '출발 및 결선', who: '우금관', note: '+영상 도우미' },
+      { role: '기록', who: '양신영' },
+      { role: '도우미 총괄', who: '유현창', subtext: '보조: 황서진·정수호·김세훈' },
+      { role: '결과보고', who: '정수호 학생', subtext: '김미화쌤과 결과 확인 → 양신영쌤께 전달' },
+    ],
+    studentPhases: [
+      {
+        title: '경기 진행 중 (모든 학년)',
+        rows: [
+          { label: '영상 4명', content: '오유영 → 하지훈쌤 / 문성주 → 정황제쌤 / 김종혁 → 박상민쌤 / 이현욱 → 우금관쌤' },
+          { label: '3학년', content: '1학년 1조·2조 줄 세우기' },
+          { label: '2학년', content: '8자 줄넘기 장비(꼬깔콘·피켓·줄넘기) 운동장 안으로 이동' },
+          { label: '결과 전달', content: '정수호 → 김미화쌤과 결과 확인 후 양신영쌤께' },
+        ],
+      },
+      {
+        title: '1학년 경기 끝난 직후',
+        rows: [
+          { label: '조끼 정리', content: '신서윤, 봉하윤' },
+          { label: '바톤 정리', content: '권혜진, 최여진' },
+          { label: '유현창쌤 보조', content: '안서영, 김세훈' },
+          { label: '기록 보조', content: '황서진' },
+        ],
+      },
+      {
+        title: '2학년 경기 끝난 직후 → 8자 줄넘기 세팅',
+        rows: [
+          { label: '피켓', content: '은준서' },
+          { label: '꼬깔콘', content: '홍도연, 서하준' },
+        ],
+        note: '※ 이어달리기 라인 안 넘도록 앞·뒷반 조심',
+      },
+      {
+        title: '3학년 경기 끝난 직후',
+        rows: [
+          { label: '장비 정리', content: '조끼, 바톤' },
+        ],
+      },
+      {
+        title: '2학년·3학년 경기 진행 중',
+        rows: [
+          { label: '2학년 경기 중', content: '3학년이 2학년 2조 줄 세우기' },
+          { label: '3학년 경기 중', content: '1학년이 3학년 2조 줄 세우기' },
+        ],
+      },
+    ],
+  },
+  {
+    num: 2, name: '8자 줄넘기',
+    classBlock: {
+      title: '반별 담당 (선생님·학생 혼합)',
+      cells: [
+        { cls: '1반', name: '신미경', isT: true },
+        { cls: '2반', name: '홍도연', isT: false },
+        { cls: '3반', name: '이재목', isT: true },
+        { cls: '4반', name: '서하준', isT: false },
+        { cls: '5반', name: '박상민', isT: true },
+        { cls: '6반', name: '오은제', isT: false },
+        { cls: '7반', name: '정황제', isT: true },
+        { cls: '8반', name: '김세훈', isT: false },
+        { cls: '9반', name: '하지훈', isT: true },
+        { cls: '10반', name: '김미화', isT: true },
+        { cls: '11반', name: '양신영', isT: true, note: '기록 겸함' },
+      ],
+    },
+    studentPhases: [
+      {
+        title: '경기 진행 중',
+        rows: [
+          { label: '미션달리기 세팅', content: '미션지·훌라후프·물병·포대·줄넘기 준비' },
+        ],
+      },
+      {
+        title: '경기 끝난 직후',
+        rows: [
+          { label: '1학년 신서윤', content: '기록 도우미로 이동 (양신영쌤 보조)' },
+          { label: '3학년', content: '줄넘기 정리, 꼬깔콘 모으기(2인3각용), 주황 꼬깔콘 별도 챙기기' },
+        ],
+      },
+    ],
+  },
+  {
+    num: 3, name: '미션 달리기',
+    teacherTasks: [
+      { role: '소집', who: '신미경, 이재목' },
+      { role: '기록', who: '양신영' },
+      { role: '시작·결승', who: '우금관' },
+    ],
+    studentPhases: [
+      {
+        title: '미션 구간별 담당 (선생님 → 학생 도우미)',
+        rows: [
+          { label: '김미화쌤', content: '은준서 (물병)' },
+          { label: '정황제쌤', content: '서하준 (바톤터치라인 · 여자)' },
+          { label: '유현창쌤', content: '신서윤, 황서진, 권혜진 (훌라후프·포대)' },
+          { label: '우금관쌤', content: '홍도연 (스타트·결승)' },
+          { label: '박상민쌤', content: '정수호 (수기·만남)' },
+          { label: '하지훈쌤', content: '안서영, 최여진, 봉하윤 (수기·만남)' },
+        ],
+      },
+      {
+        title: '기타',
+        rows: [
+          { label: '3학년', content: '8자 끝난 후 정리하고 모이기 (2인3각 준비 + 미션달리기 정리)' },
+          { label: '조끼 담당', content: '미션 끝난 후 수거 → 빠르게 중앙으로' },
+        ],
+      },
+    ],
+  },
+  {
+    num: 4, name: '2인 3각',
+    classBlock: {
+      title: '반별 담당 (선생님·학생 혼합)',
+      cells: [
+        { cls: '1반', name: '신미경', isT: true },
+        { cls: '2반', name: '최여진', isT: false },
+        { cls: '3반', name: '이재목', isT: true },
+        { cls: '4반', name: '봉하윤', isT: false },
+        { cls: '5반', name: '박상민', isT: true },
+        { cls: '6반', name: '권혜진', isT: false },
+        { cls: '7반', name: '신서윤', isT: false },
+        { cls: '8반', name: '안서영', isT: false },
+        { cls: '9반', name: '하지훈', isT: true },
+        { cls: '10반', name: '김미화', isT: true },
+        { cls: '11반', name: '황서진', isT: false },
+      ],
+    },
+    teacherTasks: [
+      { role: '기록', who: '양신영' },
+      { role: '결심', who: '우금관, 정황제', warn: '영상 꼭!' },
+    ],
+    studentPhases: [
+      {
+        title: '경기 끝난 직후',
+        rows: [
+          { label: '선심 후', content: '조끼 거두기, 바톤 정리, 2인 3각 정리' },
+        ],
+      },
+      {
+        title: '유현창쌤 인솔 (2인3각 안 하는 학생 8명)',
+        rows: [
+          { label: '학생 명단', content: '김근홍, 김세훈, 박성훈, 문성주, 최반석, 이현욱, 김종혁, 오은제' },
+          { label: '임무', content: '콘 정리 · 조끼 정리 · 바톤 정리 · 질서 정리 → 줄다리기 준비(줄·장갑·소집)' },
+        ],
+      },
+    ],
+  },
+  {
+    num: 5, name: '줄다리기',
+    teacherTasks: [
+      { role: '소집', who: '정황제' },
+      { role: '진행', who: '우금관' },
+      { role: '줄 정리', who: '스포츠 강사 + 학생들' },
+    ],
+    studentPhases: [
+      {
+        title: '경기 진행 중',
+        rows: [
+          { label: '3학년 마지막 경기 때', content: '이어달리기 준비 (1번 경기와 동일하게)' },
+        ],
+      },
+    ],
+  },
+];
+
+// ─────────────────────────────────────────────
+// 데이터: 선생님별 (사용자 지정 순서)
+// ─────────────────────────────────────────────
+const teachers = [
+  { name: '우금관', tag: '전 경기 출발·결선·진행 총괄' },
+  { name: '정황제', tag: '결심·소집' },
+  { name: '유현창', tag: '도우미 총괄 (보조 황서진·정수호·김세훈)' },
+  { name: '김미화', tag: '결심·반 담당·미션 구간' },
+  { name: '신미경', tag: '소집·반 담당' },
+  { name: '박상민', tag: '준비·반 담당·미션 구간' },
+  { name: '하지훈', tag: '준비·반 담당·미션 구간' },
+  { name: '양신영', tag: '전 경기 메인 기록' },
+  { name: '이재목', tag: '소집·반 담당' },
+];
+
+const teacherSchedules = {
+  '우금관': [
+    { num:1, name:'이어달리기', mine:'출발 및 결선', with:'영상 도우미', myStudents:'이현욱 (영상촬영)' },
+    { num:2, name:'8자 줄넘기', mine:'반 담당 없음 / 진행 보조', empty:true },
+    { num:3, name:'미션 달리기', mine:'시작 · 결승', myStudents:'홍도연 (스타트·결승)' },
+    { num:4, name:'2인 3각', mine:'결심', with:'정황제', warn:'영상 꼭!' },
+    { num:5, name:'줄다리기', mine:'진행' },
+  ],
+  '정황제': [
+    { num:1, name:'이어달리기', mine:'결심', with:'김미화 + 영상', myStudents:'문성주 (영상촬영)' },
+    { num:2, name:'8자 줄넘기', mine:'7반 담당' },
+    { num:3, name:'미션 달리기', mine:'바톤터치라인 (여자)', myStudents:'서하준' },
+    { num:4, name:'2인 3각', mine:'결심', with:'우금관', warn:'영상 꼭!' },
+    { num:5, name:'줄다리기', mine:'소집' },
+  ],
+  '유현창': [
+    { num:1, name:'이어달리기', mine:'도우미 총괄', myStudents:'황서진, 정수호, 김세훈 (보조)' },
+    { num:2, name:'8자 줄넘기', mine:'반 담당 없음 / 도우미 총괄', empty:true },
+    { num:3, name:'미션 달리기', mine:'미션 구간 담당 (훌라후프·포대)', myStudents:'신서윤, 황서진, 권혜진' },
+    { num:4, name:'2인 3각', mine:'비참가 학생 8명 인솔', myStudents:'김근홍, 김세훈, 박성훈, 문성주, 최반석, 이현욱, 김종혁, 오은제', extra:'콘·조끼·바톤·질서 정리 → 줄다리기 준비(줄·장갑·소집)' },
+    { num:5, name:'줄다리기', mine:'(인솔 학생들이 준비 완료 상태로 인계)', empty:true },
+  ],
+  '김미화': [
+    { num:1, name:'이어달리기', mine:'결심', with:'정황제 + 영상', extra:'정수호가 결과 듣고 양신영쌤께 전달' },
+    { num:2, name:'8자 줄넘기', mine:'10반 담당' },
+    { num:3, name:'미션 달리기', mine:'미션 구간 (물병)', myStudents:'은준서' },
+    { num:4, name:'2인 3각', mine:'10반 담당' },
+    { num:5, name:'줄다리기', mine:'별도 역할 없음', empty:true },
+  ],
+  '신미경': [
+    { num:1, name:'이어달리기', mine:'소집', with:'이재목' },
+    { num:2, name:'8자 줄넘기', mine:'1반 담당' },
+    { num:3, name:'미션 달리기', mine:'소집', with:'이재목' },
+    { num:4, name:'2인 3각', mine:'1반 담당' },
+    { num:5, name:'줄다리기', mine:'별도 역할 없음', empty:true },
+  ],
+  '박상민': [
+    { num:1, name:'이어달리기', mine:'준비', with:'영상 도우미', myStudents:'김종혁 (영상촬영)' },
+    { num:2, name:'8자 줄넘기', mine:'5반 담당' },
+    { num:3, name:'미션 달리기', mine:'미션 구간 (수기·만남)', myStudents:'정수호' },
+    { num:4, name:'2인 3각', mine:'5반 담당' },
+    { num:5, name:'줄다리기', mine:'별도 역할 없음', empty:true },
+  ],
+  '하지훈': [
+    { num:1, name:'이어달리기', mine:'준비', with:'영상 도우미', myStudents:'오유영 (영상촬영)' },
+    { num:2, name:'8자 줄넘기', mine:'9반 담당' },
+    { num:3, name:'미션 달리기', mine:'미션 구간 (수기·만남)', myStudents:'안서영, 최여진, 봉하윤' },
+    { num:4, name:'2인 3각', mine:'9반 담당' },
+    { num:5, name:'줄다리기', mine:'별도 역할 없음', empty:true },
+  ],
+  '양신영': [
+    { num:1, name:'이어달리기', mine:'기록 (메인)', extra:'정수호 학생이 결과 가져옴' },
+    { num:2, name:'8자 줄넘기', mine:'11반 담당 + 기록 겸함', extra:'끝난 후 신서윤(1학년)이 보조로 합류' },
+    { num:3, name:'미션 달리기', mine:'기록' },
+    { num:4, name:'2인 3각', mine:'기록' },
+    { num:5, name:'줄다리기', mine:'기록 (참고)', empty:true },
+  ],
+  '이재목': [
+    { num:1, name:'이어달리기', mine:'소집', with:'신미경' },
+    { num:2, name:'8자 줄넘기', mine:'3반 담당' },
+    { num:3, name:'미션 달리기', mine:'소집', with:'신미경' },
+    { num:4, name:'2인 3각', mine:'3반 담당' },
+    { num:5, name:'줄다리기', mine:'별도 역할 없음', empty:true },
+  ],
+};
+
+// ─────────────────────────────────────────────
+// 데이터: 도우미 학생 20명 + 학생별 임무
+// ─────────────────────────────────────────────
+const studentDuties = [
+  // ── 3학년 (7명)
+  { cls:'3-1', no:11, name:'박성훈', duties:[
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔 (콘·조끼·바톤·질서 정리 → 줄다리기 준비)'},
+  ]},
+  { cls:'3-2', no:20, name:'오유영', duties:[
+    {e:1, t:'영상촬영 - 하지훈쌤 옆'},
+  ]},
+  { cls:'3-2', no:29, name:'허수혁', duties:[] },
+  { cls:'3-3', no:25, name:'최반석', duties:[
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  { cls:'3-4', no:25, name:'이현욱', duties:[
+    {e:1, t:'영상촬영 - 우금관쌤 옆'},
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  { cls:'3-9', no:5,  name:'김근홍', duties:[
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  { cls:'3-9', no:7,  name:'김세훈', duties:[
+    {e:1, t:'유현창쌤 총괄 보조 (안서영과 함께)'},
+    {e:2, t:'8자 줄넘기 8반 담당'},
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  // ── 2학년 (7명)
+  { cls:'2-2', no:26, name:'정수호', duties:[
+    {e:1, t:'결과보고 - 김미화쌤과 결과 확인 후 양신영쌤께 전달 (유현창쌤 총괄 보조)'},
+    {e:3, t:'박상민쌤 미션 구간 (수기·만남)'},
+  ]},
+  { cls:'2-4', no:13, name:'오은제', duties:[
+    {e:2, t:'8자 줄넘기 6반 담당'},
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  { cls:'2-4', no:30, name:'홍도연', duties:[
+    {e:1, t:'2학년 도우미 - 꼬깔콘 (서하준과 함께)'},
+    {e:2, t:'8자 줄넘기 2반 담당'},
+    {e:3, t:'우금관쌤 미션 구간 (스타트·결승)'},
+  ]},
+  { cls:'2-5', no:23, name:'은준서', duties:[
+    {e:1, t:'2학년 도우미 - 피켓 담당'},
+    {e:3, t:'김미화쌤 미션 구간 (물병)'},
+  ]},
+  { cls:'2-9', no:7,  name:'김종혁', duties:[
+    {e:1, t:'영상촬영 - 박상민쌤 옆'},
+    {e:4, t:'2인3각 비참가 - 유현창쌤 인솔'},
+  ]},
+  { cls:'2-9', no:13, name:'서하준', duties:[
+    {e:1, t:'2학년 도우미 - 꼬깔콘 (홍도연과 함께)'},
+    {e:2, t:'8자 줄넘기 4반 담당'},
+    {e:3, t:'정황제쌤 미션 구간 (바톤터치라인 · 여자)'},
+  ]},
+  { cls:'2-9', no:17, name:'원호연', duties:[] },
+  // ── 1학년 (6명)
+  { cls:'1-1', no:15, name:'안서영', duties:[
+    {e:1, t:'1학년 도우미 - 유현창쌤 보조 (김세훈과 함께)'},
+    {e:3, t:'하지훈쌤 미션 구간 (수기·만남)'},
+    {e:4, t:'2인3각 8반 담당'},
+  ]},
+  { cls:'1-3', no:13, name:'신서윤', duties:[
+    {e:1, t:'1학년 도우미 - 조끼 정리 (봉하윤과 함께)'},
+    {e:2, t:'끝난 후 기록 도우미로 이동 (양신영쌤 보조)'},
+    {e:3, t:'유현창쌤 미션 구간 (훌라후프·포대)'},
+    {e:4, t:'2인3각 7반 담당'},
+  ]},
+  { cls:'1-4', no:2,  name:'권혜진', duties:[
+    {e:1, t:'1학년 도우미 - 바톤 정리 (최여진과 함께)'},
+    {e:3, t:'유현창쌤 미션 구간 (훌라후프·포대)'},
+    {e:4, t:'2인3각 6반 담당'},
+  ]},
+  { cls:'1-6', no:29, name:'황서진', duties:[
+    {e:1, t:'유현창쌤 총괄 보조 + 기록 보조'},
+    {e:3, t:'유현창쌤 미션 구간 (훌라후프·포대)'},
+    {e:4, t:'2인3각 11반 담당'},
+  ]},
+  { cls:'1-10',no:13, name:'봉하윤', duties:[
+    {e:1, t:'1학년 도우미 - 조끼 정리 (신서윤과 함께)'},
+    {e:3, t:'하지훈쌤 미션 구간 (수기·만남)'},
+    {e:4, t:'2인3각 4반 담당'},
+  ]},
+  { cls:'1-11',no:25, name:'최여진', duties:[
+    {e:1, t:'1학년 도우미 - 바톤 정리 (권혜진과 함께)'},
+    {e:3, t:'하지훈쌤 미션 구간 (수기·만남)'},
+    {e:4, t:'2인3각 2반 담당'},
+  ]},
+];
+
+// 학년 공통 임무 (학생별 임무 외에 학년 전체로 움직이는 것)
+const commonDuties = {
+  '1학년': [
+    { when:'이어달리기 후', what:'조끼·바톤 정리 (담당 학생 외 전원 협조)' },
+  ],
+  '2학년': [
+    { when:'1학년 경기 중', what:'8자 줄넘기 장비(꼬깔콘·피켓·줄넘기) 운동장 안으로 이동' },
+    { when:'자기 경기 후', what:'8자 줄넘기 세팅' },
+  ],
+  '3학년': [
+    { when:'1학년 경기 중', what:'1학년 1조·2조 줄 세우기' },
+    { when:'2학년 경기 중', what:'2학년 2조 줄 세우기' },
+    { when:'자기 경기 후', what:'이어달리기 장비(조끼·바톤) 정리' },
+    { when:'8자 줄넘기 후', what:'줄넘기 정리, 꼬깔콘 모으기(2인3각용), 주황 꼬깔콘 별도 챙기기' },
+    { when:'미션달리기 후', what:'2인 3각 준비 + 미션달리기 정리' },
+    { when:'2인3각 후', what:'줄다리기 줄·장갑 준비' },
+    { when:'줄다리기 마지막', what:'이어달리기 준비 (1번 경기와 동일)' },
+  ],
+};
+
+
+// ─────────────────────────────────────────────
+// 렌더링: 종목별
+// ─────────────────────────────────────────────
+function renderEvents() {
+  const html = events.map(ev => {
+    let teacherHTML = '';
+    if (ev.teacherTasks) {
+      teacherHTML = `
+        <div class="block">
+          <div class="block-label teacher"><span class="bar"></span>선생님 임무</div>
+          ${ev.teacherTasks.map(t => `
+            <div class="row">
+              <div class="row-label">${t.role}</div>
+              <div class="row-content">
+                ${t.who}${t.note ? `<span class="row-note">${t.note}</span>` : ''}${t.warn ? `<span class="row-warn">${t.warn}</span>` : ''}
+                ${t.subtext ? `<div style="color:var(--text-sub);font-size:12.5px;margin-top:3px">${t.subtext}</div>` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    let classHTML = '';
+    if (ev.classBlock) {
+      classHTML = `
+        <div class="block">
+          <div class="block-label teacher"><span class="bar"></span>${ev.classBlock.title}</div>
+          <div class="class-grid">
+            ${ev.classBlock.cells.map(c => `
+              <div class="class-cell ${c.isT ? 'is-teacher' : ''}">
+                <div class="num">${c.cls}${c.note ? ' · ' + c.note : ''}</div>
+                <div class="name">${c.name}${c.isT ? ' 쌤' : ''}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div style="font-size:11.5px;color:var(--text-mute);margin-top:7px;padding:0 3px">
+            ● 파란 칸 = 선생님 / 회색 칸 = 학생 도우미
+          </div>
+        </div>
+      `;
+    }
+
+    let studentHTML = '';
+    if (ev.studentPhases) {
+      studentHTML = `
+        <div class="block">
+          <div class="block-label student"><span class="bar"></span>학생 도우미 임무</div>
+          ${ev.studentPhases.map(p => `
+            <div class="phase">
+              <div class="phase-title">${p.title}</div>
+              ${p.rows.map(r => `
+                <div class="row">
+                  <div class="row-label">${r.label}</div>
+                  <div class="row-content">${r.content}</div>
+                </div>
+              `).join('')}
+              ${p.note ? `<div class="phase-note">${p.note}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    return `
+      <div class="event-card">
+        <div class="event-head">
+          <div class="event-num">${ev.num}</div>
+          <div class="event-name">${ev.name}</div>
+        </div>
+        <div class="event-body">
+          ${classHTML}
+          ${teacherHTML}
+          ${studentHTML}
+        </div>
+      </div>
+    `;
+  }).join('');
+  document.getElementById('events-list').innerHTML = html;
+}
+
+// ─────────────────────────────────────────────
+// 렌더링: 선생님별
+// ─────────────────────────────────────────────
+function renderChips() {
+  const html = teachers.map((t, i) => `
+    <button class="chip ${i === 0 ? 'active' : ''}" data-teacher="${t.name}">${t.name}</button>
+  `).join('');
+  document.getElementById('chip-bar').innerHTML = html;
+
+  document.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', e => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      renderTeacherDetail(btn.dataset.teacher);
+    });
+  });
+}
+
+function renderTeacherDetail(name) {
+  const teacher = teachers.find(t => t.name === name);
+  const schedule = teacherSchedules[name] || [];
+
+  const eventsHTML = schedule.map(s => `
+    <div class="t-event ${s.empty ? 't-event-empty' : ''}">
+      <div class="t-event-head">
+        <div class="t-event-num">${s.num}</div>
+        <div class="t-event-name">${s.name}</div>
+      </div>
+      <div class="t-row">
+        <div class="t-row-k">내 임무</div>
+        <div class="t-row-v ${s.empty ? 'empty' : ''}">
+          ${s.mine}${s.warn ? `<span class="row-warn">${s.warn}</span>` : ''}
+        </div>
+      </div>
+      ${s.with ? `
+        <div class="t-row">
+          <div class="t-row-k">같이</div>
+          <div class="t-row-v">${s.with}</div>
+        </div>
+      ` : ''}
+      ${s.myStudents ? `
+        <div class="my-students">
+          <strong>내 학생 도우미</strong>${s.myStudents}
+          ${s.extra ? `<div style="margin-top:4px;font-size:12.5px;color:#7A5A0A">└ ${s.extra}</div>` : ''}
+        </div>
+      ` : (s.extra ? `
+        <div class="t-row">
+          <div class="t-row-k">참고</div>
+          <div class="t-row-v" style="font-size:13px;color:var(--text-sub)">${s.extra}</div>
+        </div>
+      ` : '')}
+    </div>
+  `).join('');
+
+  document.getElementById('teacher-detail').innerHTML = `
+    <div class="t-summary">
+      <div class="t-avatar">${name[0]}</div>
+      <div>
+        <div class="t-info-name">${teacher.name} 선생님</div>
+        <div class="t-info-tag">${teacher.tag}</div>
+      </div>
+    </div>
+    ${eventsHTML}
+  `;
+}
+
+// ─────────────────────────────────────────────
+// 렌더링: 학생별 임무 (도우미 명단)
+// ─────────────────────────────────────────────
+function renderRoster() {
+  const grouped = { '1학년':[], '2학년':[], '3학년':[] };
+  studentDuties.forEach(s => {
+    const g = s.cls.split('-')[0];
+    grouped[`${g}학년`].push(s);
+  });
+  const order = ['1학년', '2학년', '3학년'];
+  const html = order.map(grade => {
+    const common = commonDuties[grade] || [];
+    const commonHTML = common.length === 0 ? '' : `
+      <div class="common-card">
+        <div class="common-card-title">${grade} 공통 임무</div>
+        ${common.map(c => `
+          <div class="common-row">
+            <div class="common-row-k">${c.when}</div>
+            <div class="common-row-v">${c.what}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    const studentsHTML = grouped[grade].map(s => `
+      <div class="stu-row">
+        <div class="stu-id">
+          <div class="stu-name">${s.name}</div>
+          <div class="stu-meta">${s.cls} · ${s.no}번</div>
+        </div>
+        <div class="stu-duties">
+          ${s.duties.length === 0
+            ? '<div class="stu-empty">예비 대기 (임무 미배정)</div>'
+            : s.duties.map(d => `
+                <div class="stu-duty">
+                  <span class="duty-tag e${d.e}">${d.e}</span>
+                  <span>${d.t}</span>
+                </div>
+              `).join('')
+          }
+        </div>
+      </div>
+    `).join('');
+    return `
+      <div style="margin-bottom:20px">
+        <div class="grade-hdr"><span class="gn">${grade}</span> · ${grouped[grade].length}명</div>
+        ${commonHTML}
+        ${studentsHTML}
+      </div>
+    `;
+  }).join('');
+  document.getElementById('roster-list').innerHTML = html;
+}
+
+// ─────────────────────────────────────────────
+// 탭 전환
+// ─────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.tab).classList.add('active');
+    window.scrollTo(0, 0);
+  });
+});
+
+// ─────────────────────────────────────────────
+// 초기 렌더
+// ─────────────────────────────────────────────
+renderEvents();
+renderChips();
+renderTeacherDetail(teachers[0].name);
+renderRoster();
+
+// ─────────────────────────────────────────────
+// 🥚 이스터에그: 푸터를 3번 빠르게 탭하면 트리거
+// ─────────────────────────────────────────────
+(function(){
+  let taps = 0, timer;
+  const footer = document.getElementById('footer-egg');
+  const mask = document.getElementById('egg-mask');
+  if (!footer || !mask) return;
+  footer.addEventListener('click', () => {
+    taps++;
+    clearTimeout(timer);
+    timer = setTimeout(() => { taps = 0; }, 800);
+    if (taps >= 3) {
+      mask.classList.add('show');
+      taps = 0;
+    }
+  });
+  mask.addEventListener('click', (e) => {
+    if (e.target === mask) mask.classList.remove('show');
+  });
+  // 콘솔에 작은 힌트 (개발자 도구 열어보는 사람만 발견)
+  console.log('%c🌱 만든 사람은 도우미 명단에 없습니다. 푸터를 3번 두드려보세요.', 'color:#D4A017;font-weight:bold;font-size:13px;');
+})();
+</script>
+
+</body>
+</html>
